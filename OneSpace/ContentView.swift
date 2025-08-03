@@ -10,9 +10,12 @@ import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        HStack {
-           Text("Hello Everyone")
-                .font(.custom("MuseoModerno-Regular", size: 40))
+        VStack(spacing: 12) {
+            Text("Hello Everyone")
+                .font(.museoModernoBold(20))
+            
+            Text("Welcome")
+                .font(.museoModerno(.regular, size: 16))
         }
     }
 }
