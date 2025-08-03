@@ -23,5 +23,7 @@
 		<string>MuseoModerno-Regular.ttf</string>
 		<string>MuseoModerno-Thin.ttf</string>
 	</array>
+    <key>UIUserInterfaceStyle</key>
+    <string>Dark</string>
 </dict>
 </plist>
