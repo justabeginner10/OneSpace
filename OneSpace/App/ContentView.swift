@@ -9,17 +9,23 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @EnvironmentObject var themeManager: ThemeManager
+    
     var body: some View {
         VStack(spacing: 12) {
-            Text("Hello Everyone")
-                .font(.museoModernoBold(20))
+            UnderScoredTextView(
+                text: "oneSpace",
+                textColor: themeManager.theme.background,
+                underscoreColor: .red,
+                font: .museoModerno(.black, size: 36)
+            )
             
-            Text("Welcome")
-                .font(.museoModerno(.regular, size: 16))
+            UnderScoredTextView(
+                text: "one place for all",
+                textColor: .white,
+                underscoreColor: .red,
+                font: .museoModerno(.bold, size: 24)
+            )
         }
     }
-}
-
-#Preview {
-    ContentView()
 }

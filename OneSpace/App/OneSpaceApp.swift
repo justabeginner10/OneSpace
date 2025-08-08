@@ -10,9 +10,12 @@ import SwiftData
 
 @main
 struct OneSpaceApp: App {
+    @StateObject private var themeManager = ThemeManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(themeManager)
         }
     }
 }
