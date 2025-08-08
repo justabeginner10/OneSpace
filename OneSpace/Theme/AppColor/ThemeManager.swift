@@ -26,7 +26,7 @@ final class ThemeManager: ObservableObject {
     /// The currently active theme, published for automatic view updates.
     ///
     /// Set to `LightAppTheme` by default; assign any theme that conforms to `AppThemeProtocol`.
-    @Published var theme: AppThemeProtocol = LightAppTheme()
+    @Published var theme: AppThemeProtocol = DarkAppTheme()
     
     /// Switches the active theme to Light.
     ///

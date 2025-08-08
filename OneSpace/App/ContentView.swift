@@ -10,22 +10,23 @@ import SwiftData
 
 struct ContentView: View {
     @EnvironmentObject var themeManager: ThemeManager
+    @State private var isActive: Bool = false
     
     var body: some View {
         VStack(spacing: 12) {
-            UnderScoredTextView(
-                text: "oneSpace",
-                textColor: themeManager.theme.background,
-                underscoreColor: .red,
-                font: .museoModerno(.black, size: 36)
-            )
+            if isActive {
+                HomePageView()
+            } else {
+                SplashScreenView()
+            }
             
-            UnderScoredTextView(
-                text: "one place for all",
-                textColor: .white,
-                underscoreColor: .red,
-                font: .museoModerno(.bold, size: 24)
-            )
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                isActive = true
+            }
         }
     }
 }
+
+
