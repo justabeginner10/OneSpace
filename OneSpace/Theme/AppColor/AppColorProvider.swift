@@ -108,7 +108,9 @@ extension Color {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt64()
         Scanner(string: hex).scanHexInt64(&int)
+        // swiftlint:disable identifier_name
         let a, r, g, b: UInt64
+        // swiftlint:enable identifier_name
         switch hex.count {
         case 6: // RGB (24-bit)
             (a, r, g, b) = (255, (int >> 16) & 0xFF, (int >> 8) & 0xFF, int & 0xFF)

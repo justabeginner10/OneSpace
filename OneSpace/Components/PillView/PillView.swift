@@ -20,15 +20,6 @@ struct PillViewData {
         let width: CGFloat
         /// The color of the border.
         let widthColor: Color
-        
-        /// Creates a new BorderData instance.
-        /// - Parameters:
-        ///   - width: Thickness of the border (in points).
-        ///   - widthColor: Color of the border line.
-        init(width: CGFloat, widthColor: Color) {
-            self.width = width
-            self.widthColor = widthColor
-        }
     }
     
     /// The text displayed inside the pill.

@@ -1,0 +1,22 @@
+disabled_rules:
+  - trailing_whitespace   # Allows trailing spaces at line ends
+  - force_cast            # Allow force casting
+  - force_unwrapping      # Allow force unwrapping optionals
+
+line_length:
+  warning: 120            # Only warn if line exceeds 120 characters
+
+identifier_name:
+  min_length: 3           # Allow single-character names
+  max_length: 40
+
+type_name:
+  min_length: 3
+  max_length: 40
+
+opt_in_rules:
+  - empty_count
+
+excluded:
+  - Pods
+  - Carthage
