@@ -19,7 +19,7 @@ struct SplashScreenView: View {
         UnderScoredTextView(
             text: displayedText,
             textColor: themeManager.theme.primary,
-            underscoreColor: themeManager.theme.accentTeal,
+            underscoreColor: themeManager.theme.accentRed,
             font: .museoModerno(
                 .black,
                 size: 55
