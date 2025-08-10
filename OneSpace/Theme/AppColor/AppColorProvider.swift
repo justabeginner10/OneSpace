@@ -39,6 +39,8 @@ protocol AppThemeProtocol {
     var accentOrange: Color { get }
     /// Light pink background, e.g. playful accent, banner, or tag
     var backgroundLightPink: Color { get }
+    /// Red background
+    var accentRed: Color { get }
 }
 
 /// Concrete theme colors for Light Mode.
@@ -62,6 +64,7 @@ struct LightAppTheme: AppThemeProtocol {
     let accentPink = Color(hex: "EF4668")
     let accentOrange = Color(hex: "F9AD6A")
     let backgroundLightPink = Color(hex: "FFBAC6")
+    let accentRed = Color(hex: "FF857A")
 }
 
 /// Concrete theme colors for Dark Mode.
@@ -85,6 +88,7 @@ struct DarkAppTheme: AppThemeProtocol {
     let accentPink = Color(hex: "EF4668")
     let accentOrange = Color(hex: "F9AD6A")
     let backgroundLightPink = Color(hex: "FFBAC6")
+    let accentRed = Color(hex: "FF857A")
 }
 
 extension Color {
