@@ -65,10 +65,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05E3B7A92E3F39C5004975CD /* Build configuration list for PBXNativeTarget "OneSpace" */;
 			buildPhases = (
+				B7903E892E491F7B0022B72C /* SwiftLint */,
 				05E3B7982E3F39C5004975CD /* Sources */,
 				05E3B7992E3F39C5004975CD /* Frameworks */,
 				05E3B79A2E3F39C5004975CD /* Resources */,
-				B7903E892E491F7B0022B72C /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -137,15 +137,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/.swiftlint.yml",
 			);
 			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/SwiftLint.done",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ -f /opt/homebrew/bin/swiftlint ]; then\n  /opt/homebrew/bin/swiftlint\nelse\n  echo \"warning: SwiftLint not installed. Install using 'brew install swiftlint'\"\nfi\n";
+			shellScript = "# SwiftLint\nif command -v swiftlint >/dev/null 2>&1; then\n  swiftlint --quiet\nelif [ -x \"${PODS_ROOT}/SwiftLint/swiftlint\" ]; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\" --quiet\nelif [ -x \"/opt/homebrew/bin/swiftlint\" ]; then\n  /opt/homebrew/bin/swiftlint --quiet\nelif [ -x \"/usr/local/bin/swiftlint\" ]; then\n  /usr/local/bin/swiftlint --quiet\nelse\n  echo \"warning: SwiftLint not installed. Install via 'brew install swiftlint' or integrate via CocoaPods.\"\nfi\n# Signal to Xcode that the script produced an output\nmkdir -p \"${DERIVED_FILE_DIR}\"\ntouch \"${DERIVED_FILE_DIR}/SwiftLint.done\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
