@@ -1,0 +1,30 @@
+# SwiftLint Configuration
+
+disabled_rules:
+  - trailing_whitespace     # Allows trailing spaces at line ends
+
+line_length:
+  warning: 120               # Warn if line exceeds 120 characters
+
+identifier_name:
+  min_length: 3               # Minimum length for identifiers
+  max_length: 40              # Maximum length for identifiers
+
+type_name:
+  min_length: 3
+  max_length: 40
+
+opt_in_rules:
+  - empty_count
+  - force_unwrapping          # Enable opt-in rule for force unwrap usage
+  - force_cast                 # Enable opt-in rule for force casting
+
+force_unwrapping:
+  severity: error              # Treat force unwrap (!) as an error
+
+force_cast:
+  severity: error              # Treat force cast (as!) as an error
+
+excluded:
+  - Pods
+  - Carthage
