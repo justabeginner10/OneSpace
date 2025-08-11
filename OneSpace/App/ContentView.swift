@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var isActive: Bool = false
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: Tokens.Spacing.small.value) {
             if isActive {
                 HomePageView()
             } else {
