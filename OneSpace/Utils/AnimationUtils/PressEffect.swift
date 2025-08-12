@@ -50,18 +50,20 @@ struct PressEffect: ViewModifier {
     /// when the gesture ends without manual reset.
     @GestureState private var isPressed = false
     
+    let onCompletion: (() -> Void)
+    
     func body(content: Content) -> some View {
         content
-            // Slightly shrink the view while pressed
             .scaleEffect(isPressed ? 0.9 : 1.0)
-            // Apply a bouncy animation for smooth press/release feedback
             .animation(.bouncy(duration: 0.4, extraBounce: 0.4), value: isPressed)
-            // Listen for press events
             .gesture(
-                DragGesture(minimumDistance: 0) // Detect tap-down instantly
+                DragGesture(minimumDistance: 0)
                     .updating($isPressed) { _, state, _ in
-                        state = true // Set as pressed while finger is down
+                        state = true
                     }
+                    .onEnded({ _ in
+                        onCompletion()
+                    })
             )
     }
 }
@@ -70,7 +72,7 @@ struct PressEffect: ViewModifier {
 extension View {
     /// Applies the `PressEffect` modifier to the view,
     /// giving it a press-down scaling animation similar to system buttons.
-    func pressEffect() -> some View {
-        self.modifier(PressEffect())
+    func pressEffect(onCompletion: @escaping (() -> Void)) -> some View {
+        self.modifier(PressEffect(onCompletion: onCompletion))
     }
 }
