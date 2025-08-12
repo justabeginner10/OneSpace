@@ -19,6 +19,7 @@ struct HomePageView: View {
                 underscoreColor: themeManager.theme.primary,
                 font: .museoModerno(.black, size: 36)
             )
+            .pressEffect()
             
             UnderScoredTextView(
                 text: "one place for all",
@@ -37,6 +38,7 @@ struct HomePageView: View {
                     padding: .init(top: 6, leading: 12, bottom: 6, trailing: 12)
                 )
             )
+            .pressEffect()
         }
     }
 }
