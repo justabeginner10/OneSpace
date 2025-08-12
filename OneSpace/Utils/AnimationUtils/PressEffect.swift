@@ -77,4 +77,9 @@ extension View {
     func pressEffect(onCompletion: @escaping (() -> Void)) -> some View {
         self.modifier(PressEffect(onCompletion: onCompletion))
     }
+    
+    /// Convenience overload when you only want the visual effect with no action.
+    func pressEffect() -> some View {
+        self.modifier(PressEffect(onCompletion: { }))
+    }
 }
