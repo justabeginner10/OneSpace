@@ -8,38 +8,39 @@
 import Foundation
 import SwiftUI
 
-//  A reusable SwiftUI ViewModifier that provides a "press down" tactile
-//  animation effect to any view, similar to how system buttons visually
-//  depress while being pressed.
-//
-//  Use `.pressEffect()` on any view to apply this animation.
-//
-
 // MARK: - PressEffect
-/// A `ViewModifier` that scales a view down while it is being pressed,
-/// simulating a button-press or "depressed" effect.
+/// A `ViewModifier` that provides a tactile "press down" animation effect
+/// to any view, similar to how system buttons visually depress while pressed.
+/// It also allows you to specify an **action (via `onCompletion`)** that runs
+/// when the press gesture completes (finger lifted).
 ///
-/// This modifier:
-/// - Uses a continuous `DragGesture` with `minimumDistance = 0`
-///   so it responds immediately to touch-down without requiring movement.
-/// - Relies on `@GestureState` so the "pressed" state automatically
-///   resets when the gesture ends.
-/// - Applies a `.scaleEffect` to shrink the view slightly while pressed.
+/// ## How it works
+/// - Uses a continuous `DragGesture` with `minimumDistance = 0` so it responds
+///   immediately to touch down.
+/// - Leverages `@GestureState` so the `isPressed` state automatically resets
+///   when the gesture ends.
+/// - Applies a `.scaleEffect` to slightly shrink the view while pressed.
 /// - Animates the scaling using `.bouncy` for a springy, natural feel.
+/// - Executes the `onCompletion` closure **when the press ends** (after touch release).
 ///
-/// Example usage:
+/// ## Example usage:
 /// ```
 /// Text("Tap Me")
 ///     .padding()
 ///     .background(Color.blue, in: Capsule())
 ///     .foregroundColor(.white)
-///     .pressEffect()
+///     .pressEffect {
+///         print("Button tapped or pressed and released!")
+///     }
 /// ```
 ///
-/// You can also use it with custom views:
+/// You can also use it with any custom view:
 /// ```
 /// PillView(data: pillData)
-///     .pressEffect()
+///     .pressEffect {
+///         playHapticFeedback()
+///         navigateToDetails()
+///     }
 /// ```
 struct PressEffect: ViewModifier {
     
@@ -48,6 +49,7 @@ struct PressEffect: ViewModifier {
     /// when the gesture ends without manual reset.
     @GestureState private var isPressed = false
     
+    /// Action to perform when the press gesture is completed (finger lifted).
     let onCompletion: (() -> Void)
     
     func body(content: Content) -> some View {
@@ -59,9 +61,9 @@ struct PressEffect: ViewModifier {
                     .updating($isPressed) { _, state, _ in
                         state = true
                     }
-                    .onEnded({ _ in
+                    .onEnded { _ in
                         onCompletion()
-                    })
+                    }
             )
     }
 }
@@ -70,6 +72,8 @@ struct PressEffect: ViewModifier {
 extension View {
     /// Applies the `PressEffect` modifier to the view,
     /// giving it a press-down scaling animation similar to system buttons.
+    /// - Parameter onCompletion: Closure to run when the press ends.
+    /// - Returns: A view with the press effect applied.
     func pressEffect(onCompletion: @escaping (() -> Void)) -> some View {
         self.modifier(PressEffect(onCompletion: onCompletion))
     }
