@@ -15,8 +15,6 @@ import SwiftUI
 //  Use `.pressEffect()` on any view to apply this animation.
 //
 
-import SwiftUI
-
 // MARK: - PressEffect
 /// A `ViewModifier` that scales a view down while it is being pressed,
 /// simulating a button-press or "depressed" effect.
