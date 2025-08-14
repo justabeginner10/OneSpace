@@ -39,7 +39,7 @@ import SwiftUI
 ///     }
 /// ```
 struct PressEffect: ViewModifier {
-    
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// Whether the view is currently being pressed.
     /// Automatically resets via `@GestureState` when gesture ends.
     @GestureState private var isPressed = false
@@ -54,7 +54,7 @@ struct PressEffect: ViewModifier {
         content
             // Scale down when pressed
             .scaleEffect(isPressed ? 0.9 : 1.0)
-            .animation(.bouncy(duration: 0.4, extraBounce: 0.4), value: isPressed)
+            .animation(reduceMotion ? nil : .bouncy(duration: 0.4, extraBounce: 0.4), value: isPressed)
             // Handle press detection
             .simultaneousGesture(
                 DragGesture(minimumDistance: 0)
@@ -70,9 +70,9 @@ struct PressEffect: ViewModifier {
                     }
                     .onEnded { value in
                         // Distance from start to end point
-                        let height = value.translation.width
-                        let width = value.translation.height
-                        let totalDistance = sqrt(width * width + height * height)
+                        let dx = value.translation.width
+                        let dy = value.translation.height
+                        let totalDistance = (dx * dx + dy * dy).squareRoot()
                         
                         // Trigger only if:
                         // - User didn’t scroll
