@@ -23,7 +23,9 @@ struct ContentView: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                isActive = true
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    isActive = true
+                }
             }
         }
     }
