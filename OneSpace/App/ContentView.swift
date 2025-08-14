@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: Tokens.Spacing.small.value) {
             if isActive {
-                HomePageView()
+                HomeView()
             } else {
                 SplashScreenView()
             }
