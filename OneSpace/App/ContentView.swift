@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: Tokens.Spacing.small.value) {
             if isActive {
-                HomePageView()
+                HomeView()
             } else {
                 SplashScreenView()
             }
@@ -23,7 +23,9 @@ struct ContentView: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                isActive = true
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    isActive = true
+                }
             }
         }
     }
