@@ -59,43 +59,6 @@ class FilterManager: ObservableObject {
     func getBorderWidth(for index: Int) -> CGFloat {
         filterData[index].borderWidth
     }
-    
-    // MARK: - Direct FilterData Accessors
-    
-    func getText(for filterItem: FilterData) -> String {
-        if let unselectedText = filterItem.unselectedText {
-            return filterItem.isSelected ? filterItem.selectedText : unselectedText
-        }
-        return filterItem.selectedText
-    }
-    
-    func getFont(for filterItem: FilterData) -> Font {
-        if let unselectedFont = filterItem.unselectedFont {
-            return filterItem.isSelected ? filterItem.selectedFont : unselectedFont
-        }
-        return filterItem.selectedFont
-    }
-    
-    func getTextColor(for filterItem: FilterData) -> Color {
-        if let unselectedTextColor = filterItem.unselectedTextColor {
-            return filterItem.isSelected ? filterItem.selectedTextColor : unselectedTextColor
-        }
-        return filterItem.selectedTextColor
-    }
-    
-    func getBackgroundColor(for filterItem: FilterData) -> Color {
-        if let unselectedBackgroundColor = filterItem.unselectedBackgroundColor {
-            return filterItem.isSelected ? filterItem.selectedBackgroundColor : unselectedBackgroundColor
-        }
-        return filterItem.selectedBackgroundColor
-    }
-    
-    func getBorderColor(for filterItem: FilterData) -> Color {
-        if let unselectedBorderColor = filterItem.unselectedBorderColor {
-            return filterItem.isSelected ? filterItem.selectedBorderColor : unselectedBorderColor
-        }
-        return filterItem.selectedBorderColor
-    }
 }
 
 struct FilterData {
