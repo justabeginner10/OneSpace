@@ -122,9 +122,4 @@ struct FilterLayoutData {
     
     let containerLayoutData: FilterContainerLayoutData
     let singleNodeLayoutData: SingleFilterNodeLayoutData
-    
-    init(containerLayoutData: FilterContainerLayoutData, singleNodeLayoutData: SingleFilterNodeLayoutData) {
-        self.containerLayoutData = containerLayoutData
-        self.singleNodeLayoutData = singleNodeLayoutData
-    }
 }
