@@ -19,6 +19,10 @@ opt_in_rules:
   - force_unwrapping          # Enable opt-in rule for force unwrap usage
   - force_cast                 # Enable opt-in rule for force casting
 
+function_body_length:
+  warning: 100   # Warning threshold (change as desired)
+  error: 200    # Error threshold (change as desired)
+
 force_unwrapping:
   severity: error              # Treat force unwrap (!) as an error
 

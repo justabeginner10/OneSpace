@@ -23,7 +23,7 @@ class FilterManager: ObservableObject {
         index: Int,
         selectedKey: KeyPath<FilterData, T>,
         unselectedKey: KeyPath<FilterData, T?>
-    ) -> T where T: Equatable {
+    ) -> T {
         guard index < filterData.count else {
             fatalError("Index out of range in FilterManager")
         }
