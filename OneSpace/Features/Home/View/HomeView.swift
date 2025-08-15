@@ -27,7 +27,6 @@ struct HomeView: View {
     }
 }
 
-
 class HomeViewModel: ObservableObject {
     private var themeManager: ThemeManager
     var updateSubject: PassthroughSubject<String, Never> = .init()
@@ -52,6 +51,7 @@ class HomeViewModel: ObservableObject {
         bindToEventListeners()
     }
     
+    // TODO: To remove when proper data setup is doneyVa
     func createFilterData() -> [FilterData] {
         return [
             FilterData(

@@ -70,9 +70,9 @@ struct PressEffect: ViewModifier {
                     }
                     .onEnded { value in
                         // Distance from start to end point
-                        let dx = value.translation.width
-                        let dy = value.translation.height
-                        let totalDistance = (dx * dx + dy * dy).squareRoot()
+                        let xVal = value.translation.width
+                        let yVal = value.translation.height
+                        let totalDistance = (xVal * xVal + yVal * yVal).squareRoot()
                         
                         // Trigger only if:
                         // - User didn’t scroll
