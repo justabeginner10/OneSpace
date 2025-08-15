@@ -187,8 +187,10 @@ class HomeViewModel: ObservableObject {
     }
     
     private func updateDataFor(id: String) {
-        if let index = self.filterManager?.filterData.firstIndex(where: { $0.id == id }) {
-            filterManager?.filterData[index].isSelected.toggle()
+        guard var data = filterManager?.filterData else { return }
+        if let index = data.firstIndex(where: { $0.id == id }) {
+            data[index].isSelected.toggle()
+            filterManager?.filterData = data
         }
     }
 }

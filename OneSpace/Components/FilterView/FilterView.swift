@@ -10,10 +10,10 @@ import Combine
 
 struct FilterView: View {
     @EnvironmentObject var themeManager: ThemeManager
-    @StateObject private var viewManager: FilterManager
+    @ObservedObject private var viewManager: FilterManager
     
     init(viewManager: FilterManager) {
-        self._viewManager = StateObject(wrappedValue: viewManager)
+        self.viewManager = viewManager
     }
     
     var body: some View {
