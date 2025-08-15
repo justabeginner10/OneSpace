@@ -26,7 +26,8 @@ struct FilterView: View {
                                 text: viewManager.getText(for: index),
                                 textColor: viewManager.getTextColor(for: index),
                                 font: viewManager.getFont(for: index),
-                                borderData: .init(width: filterItem.borderWidth, widthColor: viewManager.getBorderColor(for: index)),
+                                borderData: .init(width: filterItem.borderWidth,
+                                                  widthColor: viewManager.getBorderColor(for: index)),
                                 cornerRadius: viewManager.layoutData.singleNodeLayoutData.nodesCornerRadius,
                                 backgroundColor: viewManager.getBackgroundColor(for: index),
                                 padding: viewManager.layoutData.singleNodeLayoutData.nodesInterPadding
