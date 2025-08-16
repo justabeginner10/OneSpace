@@ -19,9 +19,44 @@ struct HomeView: View {
     }
     
     var body: some View {
-        VStack {
-            if let filterManager = viewModel.filterManager {
-                FilterView(viewManager: filterManager)
+        ZStack {
+            themeManager.theme.background
+                .ignoresSafeArea()
+            
+            ScrollView(showsIndicators: false) {
+                LazyVStack(spacing: 16, pinnedViews: [.sectionHeaders]) {
+                    UnderScoredTextView(
+                        text: "task",
+                        textColor: themeManager.theme.primary,
+                        underscoreColor: themeManager.theme.accentRed,
+                        font: .museoModerno(.bold, size: 50)
+                    )
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 16)
+                    
+                    Section {
+                        ForEach(0...20, id: \.self) { index in
+                            if index % 3 == 0 {
+                                FilterDividerView()
+                            }
+                            
+                            CardsView()
+                        }
+                        .padding(.horizontal, 16)
+                    } header: {
+                        if let filterManager = viewModel.filterManager {
+                            FilterView(viewManager: filterManager)
+                                .background {
+                                    themeManager.theme.background
+                                }
+                        }
+                    }
+                }
+            }
+            .edgesIgnoringSafeArea(.top)
+            .padding(.top)
+            .safeAreaInset(edge: .top) {
+                Color.clear.frame(height: 0)
             }
         }
     }
@@ -40,7 +75,7 @@ class HomeViewModel: ObservableObject {
             layoutData: .init(
                 containerLayoutData: .init(
                     nodesInterspacing: 8,
-                    wrapperPadding: .init(top: 4, leading: 4, bottom: 4, trailing: 4)
+                    wrapperPadding: .init(top: 12, leading: 16, bottom: 12, trailing: 16)
                 ),
                 singleNodeLayoutData: .init(
                     nodesCornerRadius: 20,
