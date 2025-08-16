@@ -14,6 +14,9 @@ struct HomeView: View {
     
     @StateObject private var viewModel: HomeViewModel
     
+    @State private var animateHeader: Bool = false
+    @State private var animateContent: Bool = false
+    
     init(viewModel: HomeViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -33,6 +36,9 @@ struct HomeView: View {
                     )
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 16)
+                    .offset(y: animateHeader ? 0 : -100)
+                    .opacity(animateHeader ? 1 : 0)
+                    .animation(.spring(duration: 0.6, bounce: 0.4), value: animateHeader)
                     
                     Section {
                         ForEach(0...20, id: \.self) { index in
@@ -43,6 +49,9 @@ struct HomeView: View {
                             CardsView()
                         }
                         .padding(.horizontal, 16)
+                        .offset(y: animateContent ? 0 : UIScreen.main.bounds.height)
+                        .opacity(animateContent ? 1 : 0)
+                        .animation(.spring(duration: 0.6, bounce: 0.2), value: animateContent)
                     } header: {
                         if let filterManager = viewModel.filterManager {
                             FilterView(viewManager: filterManager)
@@ -57,6 +66,12 @@ struct HomeView: View {
             .padding(.top)
             .safeAreaInset(edge: .top) {
                 Color.clear.frame(height: 0)
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                animateHeader = true
+                animateContent = true
             }
         }
     }
